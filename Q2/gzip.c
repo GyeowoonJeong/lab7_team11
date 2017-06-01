@@ -9,7 +9,8 @@ int main(int argc, char **argv, char **envp) {
         char buf[128];
 
         for(i=1; argv[i]; i++) {
-                if (Fork() == 0) {
+                pid = Fork();
+                if (pid == 0) {
                         sprintf(buf, "gzip -d %s", argv[i]);
                         system(buf);
                         exit(1);
@@ -23,4 +24,3 @@ int main(int argc, char **argv, char **envp) {
         printf("It's Done!\n");
         exit(0);
 }
-
